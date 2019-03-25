@@ -42,6 +42,9 @@ limitations under the License.
 */
 
 #pragma once
+
+#include "capture_stats_source.h"
+
 #ifdef _WIN32
 #pragma warning(disable: 4251 4200 4221 4190)
 #endif
@@ -233,7 +236,7 @@ public:
   - event retrieval
   - setting capture filters
 */
-class SINSP_PUBLIC sinsp
+class SINSP_PUBLIC sinsp : public capture_stats_source
 {
 public:
 	typedef std::set<std::string> k8s_ext_list_t;
@@ -548,7 +551,7 @@ public:
 
 	  \note this call won't work on file captures.
 	*/
-	void get_capture_stats(scap_stats* stats);
+	void get_capture_stats(scap_stats* stats) override;
 
 	void set_max_thread_table_size(uint32_t value);
 
